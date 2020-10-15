@@ -1,0 +1,3 @@
+Client's IP: 196.77.208.84
+ Your browser: Mozilla Firefox 79.0 on mac reports: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:79.0) Gecko/20100101 Firefox/79.0
+ip: 196.77.208.84

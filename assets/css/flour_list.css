@@ -1,0 +1,26 @@
+/* flour list page /product bags images   */
+.card-img {
+    height:250px!important;
+
+    }
+
+    .golden-text{
+      color: #b0976d!important;
+      }
+
+
+    .nutrition-badge{
+    font-size:10px!important;
+    }
+    .card-body{
+      height:250px!important;
+    }
+
+    .card-header h3{
+      font-family: champagne-bold;
+      font-size:18px;
+      letter-spacing: 2px;;
+      }
+    .card , .card-header{
+      border-radius: 0px!important;
+    }

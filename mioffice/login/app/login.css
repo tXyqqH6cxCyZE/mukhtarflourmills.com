@@ -1,0 +1,487 @@
+html,
+body {
+  height: 100%;
+  min-height: 580px;
+  min-width: 700px !important;
+}
+#login {
+  min-width: 700px;
+  max-width: 2560px;
+  margin: 0 auto;
+  height: 100%;
+  background-color: #fff;
+  position: relative;
+}
+#login .container {
+  width: 100%;
+  padding: 0 120px;
+  margin: 0 auto;
+}
+#login .hide {
+  display: none;
+}
+#login .show {
+  display: block;
+}
+#login input,
+#login button {
+  outline: none;
+}
+#login .header {
+  height: 90px;
+  padding-top: 22px;
+  font-size: 0;
+}
+#login .header img {
+  width: 46px;
+  height: 46px;
+  vertical-align: top;
+}
+
+#login .header h1 {
+  display: inline-block;
+  line-height: 46px;
+  font-size: 26px;
+  margin-left: 14px;
+  color: #333;
+  font-weight: bold;
+}
+
+#login .header .switch {
+  float: right;
+  height: 14px;
+}
+
+#login .header .switch span {
+  height: 14px;
+  width: 1px;
+  background-color: #e9e9e9;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#login .header .switch a {
+  margin: 0 12px;
+  color: #999;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+#login .header .switch a.on {
+  color: #ff6633;
+}
+
+#login .content {
+  position: absolute;
+  top: 90px;
+  bottom: 90px;
+  width: 100%;
+  background: url("https://cas.mioffice.cn/v2/static/images/main_bg_1.jpg") no-repeat center;
+}
+
+#login .content .con-from {
+  position: absolute;
+  right: 120px;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 350px;
+  min-height: 380px;
+  background-color: #fff;
+  float: right;
+  padding: 40px 0 44px 0;
+}
+
+#login .content .con-from a {
+  color: #999;
+}
+
+#login .content .con-from .con-f-title {
+  margin-bottom: 32px;
+  font-size: 16px;
+  color: #333;
+  line-height: 16px;
+}
+
+#login .content .con-from .con-f-title span {
+  width: 50%;
+  display: inline-block;
+  float: left;
+  text-align: center;
+  color: #333;
+}
+
+#login .content .con-from .con-f-title span:nth-child(1) {
+  border-right: 1px solid #e9e9e9;
+}
+
+#login .content .con-from .con-f-title span i {
+  font-style: normal;
+  cursor: pointer;
+}
+
+#login .content .con-from .con-f-title span.on {
+  color: #ff6633;
+}
+
+#login .content .con-from .con-f-title span.on i {
+  color: #ff6633;
+}
+
+#login .content .con-from .con-f-content {
+  width: 100%;
+  padding: 0 30px;
+}
+
+#login .content .con-from .con-f-content input {
+  height: 40px;
+  width: 100%;
+  border: 1px solid #e9e9e9;
+  font-size: 14px;
+  padding: 0 12px;
+  margin-bottom: 12px;
+}
+
+#login .content .con-from .con-f-content input:nth-child(2) {
+  margin-bottom: 0;
+}
+
+#login .content .con-from .con-f-content input.err {
+  border-color: #ff6633;
+}
+
+#login .content .con-from .con-f-content input::-webkit-input-placeholder {
+  color: #999;
+  font-size: 14px;
+}
+
+#login .content .con-from .con-f-content button {
+  height: 40px;
+  width: 100%;
+  background-color: #ff6633;
+  color: #fff;
+  border: none;
+  font-weight: normal;
+  margin-bottom: 12px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+#login .content .con-from .con-f-content p {
+  line-height: 12px;
+  font-size: 12px;
+}
+
+#login .content .con-from .con-f-content .login-error {
+  font-size: 14px;
+  line-height: 16px;
+  color: #ff6633;
+  padding-left: 26px;
+  margin-top: 10px;
+  background: url("https://cas.mioffice.cn/v2/static/images/tips_error.png") no-repeat left center;
+  display: none;
+}
+
+#login .content .con-from .con-f-content .login-error.on {
+  display: block;
+}
+
+#login .content .con-from .con-f-content .account-second>input {
+  opacity: .8;
+  background-color: #e9e9e9;
+}
+
+#login .content .con-from .con-f-content .account-second .verifical-code input {
+  /*width: 200px;*/
+}
+
+#login .content .con-from .con-f-content .account-second .verifical-code button {
+  width: 90px;
+  margin-top: 0;
+  float: right;
+  background-color: #e9e9e9;
+  color: #ff6633;
+  font-size: 14px;
+}
+
+#login .content .con-from .con-f-content .account-second .trust-device span {
+  position: relative;
+  float: left;
+}
+
+#login .content .con-from .con-f-content .account-second .trust-device span .input-check {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  visibility: hidden;
+  background-color: #fff;
+}
+
+#login .content .con-from .con-f-content .account-second .trust-device span .input-check+label {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url('https://cas.mioffice.cn/v2/static/images/un_check.png') no-repeat;
+  cursor: pointer;
+}
+
+#login .content .con-from .con-f-content .account-second .trust-device span .input-check:checked+label {
+  background: url('https://cas.mioffice.cn/v2/static/images/checked.png') no-repeat;
+}
+
+#login .content .con-from .con-f-content .account-second .trust-device p {
+  padding-left: 26px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #999;
+}
+
+#login .content .con-from .q-r-code .q-r-code-img {
+  width: 120px;
+  height: 120px;
+  margin: 46px auto 16px;
+  border: 1px solid #eee;
+  padding: 4px;
+  position: relative;
+}
+
+#login .content .con-from .q-r-code .q-r-code-img img {
+  width: 100%;
+  height: 100%;
+}
+
+#login .content .con-from .q-r-code .q-r-code-img .q-r-code-img-lose {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding-top: 30px;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  line-height: 14px;
+  display: none;
+}
+
+#login .content .con-from .q-r-code .q-r-code-img .q-r-code-img-lose p {
+  margin-bottom: 14px;
+}
+
+#login .content .con-from .q-r-code .q-r-code-img .q-r-code-img-lose button {
+  width: 80px;
+  height: 36px;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  margin: 0;
+}
+
+#login .content .con-from .q-r-code .q-r-code-img .q-r-code-img-lose.show {
+  display: block;
+}
+
+#login .content .con-from .q-r-code .info p {
+  text-align: center;
+}
+
+#login .content .con-from .q-r-code .info p:nth-child(1) {
+  color: #666;
+  font-size: 14px;
+}
+
+#login .content .con-from .q-r-code .info p:nth-child(2) {
+  color: #999;
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+#login .content .con-from .con-f-footer {
+  position: absolute;
+  bottom: 24px;
+  left: 30px;
+  right: 30px;
+  font-size: 12px;
+}
+
+#login .content .con-from .con-f-footer a:nth-child(1) {
+  float: left;
+}
+
+#login .content .con-from .con-f-footer a:nth-child(2) {
+  float: right;
+}
+
+#login .content .con-f-success {
+  position: relative;
+  margin-top: 110px;
+  width: 350px;
+  height: 380px;
+  background-color: #fff;
+  float: right;
+  padding: 40px 30px 24px 30px;
+}
+
+#login .content .con-f-success a {
+  color: #999;
+}
+
+#login .content .con-f-success .con-f-s-title {
+  margin-bottom: 45px;
+  font-size: 16px;
+  color: #ff6633;
+  line-height: 16px;
+  text-align: center;
+}
+
+#login .content .con-f-success .con-f-s-content {
+  font-size: 12px;
+  line-height: 12px;
+  color: #999;
+}
+
+#login .content .con-f-success .con-f-s-content .avatar {
+  margin: 0 auto;
+  width: 120px;
+  height: 120px;
+  border: 1px solid #e9e9e9;
+  padding: 4px;
+}
+
+#login .content .con-f-success .con-f-s-content .avatar img {
+  width: 100%;
+  height: 100%;
+}
+
+#login .content .con-f-success .con-f-s-content .btn button {
+  height: 46px;
+  width: 140px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+}
+
+#login .content .con-f-success .con-f-s-content .btn button:nth-child(1) {
+  float: left;
+  background-color: #999;
+}
+
+#login .content .con-f-success .con-f-s-content .btn button:nth-child(2) {
+  float: right;
+  background-color: #ff6633;
+}
+
+#login .content .con-f-success .con-f-s-content p {
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+
+#login .content .con-f-success .con-f-s-footer {
+  position: absolute;
+  right: 30px;
+  bottom: 24px;
+  font-size: 12px;
+  line-height: 12px;
+  color: #999;
+}
+
+#login .content a:hover {
+  color: #ff6633;
+}
+
+#login .footer {
+  position: absolute;
+  width: 100%;
+  bottom: 34px;
+  text-align: center;
+  line-height: 12px;
+  font-size: 12px;
+  color: #999;
+}
+
+.login-dialog {
+  display: none;
+}
+
+.login-dialog .d-bg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.login-dialog .content {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  padding: 90px 128px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.login-dialog .content img {
+  display: block;
+  margin: 0 auto;
+  width: 180px;
+  height: 180px;
+}
+
+.login-dialog .content .close {
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.login-dialog .content a {
+  display: inline-block;
+  margin-top: 50px;
+  width: 180px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #ff6633;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.login-dialog.on {
+  display: block;
+}
+
+.trust-device1{
+  margin-top: 20px;
+}
+.trust-device1 span .input-check{
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  visibility: hidden;
+  background-color: #fff;
+}
+.trust-device1 span .input-check+label{
+  position: absolute;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url("https://cas.mioffice.cn/v2/static/images/un_check.png") no-repeat;
+  cursor: pointer;
+}
+.trust-device1 span .input-check:checked+label{
+  background: url("https://cas.mioffice.cn/v2/static/images/checked.png") no-repeat;
+}
+.trust-device1 p{
+  padding-left: 26px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #999;
+}

